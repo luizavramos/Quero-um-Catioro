@@ -8,21 +8,24 @@ function App() {
   function buildImage() {
     const [items, setItems] = useState(null);
     useEffect(() => {
-      const requisicao = axios.get("https://dog.ceo/api/breeds/image/random");
+      const promise = axios.get("https://dog.ceo/api/breeds/image/random");
   
-      requisicao.then(resposta => {
+      promise.then(resposta => {
         setItems(resposta.data.items);
       });
+      promise.catch(e => console.log("deu ruim! 😢", e));
     }, []);
-  
+    
+   
     if(items === null) {
       return <img src={loading} alt="carregando..." />;
     }
+    
   
     return (
-      <ul>
-        {items.map(item => <li>{item}</li>)}
-      </ul>
+      
+       <img src={items}alt="imagem catioro" />
+      
     );
   }
 
