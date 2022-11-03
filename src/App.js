@@ -4,14 +4,14 @@ import axios from "axios";
 import loading from "./assets/loading.gif";
 
 function App() {
-
+const [items, setItems] = useState(null);
   function buildImage() {
-    const [items, setItems] = useState(null);
+    
     useEffect(() => {
       const promise = axios.get("https://dog.ceo/api/breeds/image/random");
   
       promise.then(resposta => {
-        setItems(resposta.data.items);
+        setItems(resposta.data.message);
       });
       promise.catch(e => console.log("deu ruim! 😢", e));
     }, []);
